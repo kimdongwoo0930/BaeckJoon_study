@@ -12,33 +12,37 @@
 
 N = int(input())
 Map = [[0] * N for i in range(N)]
-Right = [0] * N
-Down = [0] * N
-for i in range(N):
+Right = 0
+Down = 0
+for i in range(0,N):
     Num = input()
-    for j in range(N):
+    for j in range(0,N):
         Map[i][j] = Num[j]
 
-for i in range(N):
+for i in range(0,N):
     cnt_D = 0
     cnt_R = 0
-    for j in range(N):
+    for j in range(0,N):
         if Map[i][j] == '.':
             cnt_R += 1
-        else:
+        elif Map[i][j] == 'X':
+            if cnt_R >= 2:
+                Right += 1
             cnt_R = 0
 
         if Map[j][i] == '.':
             cnt_D += 1
-        else:
+        elif Map[j][i] == 'X':
+            if cnt_D >= 2:
+                Down += 1
             cnt_D = 0
 
-        if cnt_R == 2:
-            Right[i] = 1
-        if cnt_D == 2:
-            Down[i] = 1
+    if cnt_R >= 2:
+        Right += 1
+    if cnt_D >= 2:
+        Down += 1
 
-print(sum(Right), sum(Down))
+print(Right, Down)
 
 
 
