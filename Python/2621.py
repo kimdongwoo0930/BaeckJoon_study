@@ -18,9 +18,60 @@
 
 
 {
- 같은색 && 연속적인 숫자 -> 가장높은수 + 900
+ 5장 같은색 && 연속적인 숫자 -> 가장높은수 + 900
 
  같은숫자 4장 -> 그 숫자 + 800
-}
+
+ 3장 2장 이 숫자가 같을떄 -> 3장값 x 10 + 2장 값 + 700
+
+ 5장 같은색 -> 가장높은수 + 600
+
+ 5장 연속숫자  ->  가장 높은수 + 500
+
+ 3장의 숫자가 같을때 -> 같은수 + 400
+
+ 5장중 2장 2장 같을경우 -> 높은 숫자 x 10 + 숫자 + 300
+
+ 2장이 같을경우 -> 숫자 + 200
+
+ 아무것도 아닐경우 가장큰숫자 + 100
 '''
+
+def check_color(color = {}):
+    color = sorted(color.items(), key=lambda x: x[1], reverse= True)
+
+
+
+
+
+
+Color = {"R" : 0 , "B" : 0, "Y" : 0, "G" : 0}
+Num = []
+
+card = {}
+
+five_num = False
+three_num = False
+
+for i in range(0,5):
+    a, b = map(input().split(" "))
+    card[a] = int(b)
+    if a == "R":
+        Color["R"] += 1
+    elif a == "B":
+        Color["B"] += 1
+    elif a == "Y":
+        Color["Y"] += 1
+    elif a == "G":
+        Color["G"] += 1
+
+
+
+
+
+    Color.append(a)
+    Num.append(b)
+
+
+
 
