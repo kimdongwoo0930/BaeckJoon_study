@@ -24,53 +24,120 @@
 
  3장 2장 이 숫자가 같을떄 -> 3장값 x 10 + 2장 값 + 700
 
- 5장 같은색 -> 가장높은수 + 600
+ 5장 같은색 -> 가장높은수 + 600 (O)
 
- 5장 연속숫자  ->  가장 높은수 + 500
+ 5장 연속숫자  ->  가장 높은수 + 500 (o)
 
  3장의 숫자가 같을때 -> 같은수 + 400
 
- 5장중 2장 2장 같을경우 -> 높은 숫자 x 10 + 숫자 + 300
+ 5장중 숫자 2장 2장 같을경우 -> 높은 숫자 x 10 + 숫자 + 300
 
- 2장이 같을경우 -> 숫자 + 200
+ 2장이 숫자 같을경우 -> 숫자 + 200
 
  아무것도 아닐경우 가장큰숫자 + 100
 '''
 
-def check_color(color = {}):
-    color = sorted(color.items(), key=lambda x: x[1], reverse= True)
-
-
-
-
-
-
 Color = {"R" : 0 , "B" : 0, "Y" : 0, "G" : 0}
+number = {"1" : 0 , "2" : 0 , "3" : 0 , "4" : 0, "5" : 0, "6": 0, "7": 0, "8": 0, "9" : 0}
 Num = []
 
 card = {}
 
-five_num = False
-three_num = False
+first_num = 0
+second_num = 0
+first_color = 0
+point = 0
+
+
+def check_color (color ={}):
+    color = sorted(color.items(), key=lambda x: x[1],reverse=True)
+    if color[0][1] == 5:
+        return True
+
+
+def continuous_num(num = []):
+    num.sort(reverse=False)
+    for i in range(0,4):
+        if num[i] == num[i+1] - 1:
+            continue
+        else:
+            return False
+    return True
+
+
+def check_num(num = {}):
+    global first_num
+    global second_num
+
+    num = sorted(num.items(),key=lambda x: x[1],reverse=True)
+    if num[0][1] == 5:
+        first_num = int(num[0][0])
+        return 5
+    elif num[0][1] == 4:
+        first_num = int(num[0][0])
+        return 4
+    elif num[0][1] == 3:
+        if num[1][1] == 2:
+            first_num = int(num[0][0])
+            second_num = int(num[1][0])
+            return 3.2
+        else:
+            first_num = int(num[0][0])
+            return 3
+    elif num[0][1] == 2:
+        if num[1][1] == 2:
+            if int(num[0][0]) > int(num[1][0]):
+                first_num = int(num[0][0])
+                second_num = int(num[1][0])
+            else:
+                first_num = int(num[1][0])
+                second_num = int(num[0][0])
+            return 2.2
+        else:
+            first_num = int(num[0][0])
+            return 2
+
 
 for i in range(0,5):
-    a, b = map(input().split(" "))
+    a, b = input().split(" ")
     card[a] = int(b)
-    if a == "R":
-        Color["R"] += 1
-    elif a == "B":
-        Color["B"] += 1
-    elif a == "Y":
-        Color["Y"] += 1
-    elif a == "G":
-        Color["G"] += 1
+    Color[a] += 1
+    number[b] += 1
+    Num.append(int(b))
 
 
+color_result = check_color(Color)
+continuous_result = continuous_num(Num)
+num_result = check_num(number)
+
+card = sorted(card.items(), key=lambda x: x[1],reverse=True)
 
 
+if color_result == True and continuous_result == True:   #성공
+    point = card[0][1] + 900
+elif num_result == 4:          # 성공
+    point = first_num + 800
+elif num_result == 3.2:        # 성공
+    point = first_num * 10 + second_num + 700
+elif color_result:             # 큰수 구하기 성공
+    point = card[0][1] + 600
+elif continuous_result:        # 큰수 구하기 성공
+    point = card[0][1] + 500
+elif num_result == 3:
+    point = first_num + 400  #성공
+elif num_result == 2.2:
+    point = first_num * 10 + second_num + 300  # 성공
+elif num_result == 2:
+    point = first_num + 200    #성공
+else:
+    point = card[0][1] + 100   #성공
 
-    Color.append(a)
-    Num.append(b)
+print(point)
+
+
+    # 검색함수는 완성 이제 조건만 걸면된다.
+
+
 
 
 
