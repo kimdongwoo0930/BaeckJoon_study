@@ -45,19 +45,18 @@ card = {}
 
 first_num = 0
 second_num = 0
-first_color = 0
 point = 0
 
 
-def check_color (color ={}):
-    color = sorted(color.items(), key=lambda x: x[1],reverse=True)
+def check_color(color={}):
+    color = sorted(color.items(), key=lambda x: x[1], reverse=True)
     if color[0][1] == 5:
         return True
 
 
-def continuous_num(num = []):
+def continuous_num(num=[]):
     num.sort(reverse=False)
-    for i in range(0,4):
+    for i in range(0, 4):
         if num[i] == num[i+1] - 1:
             continue
         else:
@@ -65,11 +64,11 @@ def continuous_num(num = []):
     return True
 
 
-def check_num(num = {}):
+def check_num(num={}):
     global first_num
     global second_num
 
-    num = sorted(num.items(),key=lambda x: x[1],reverse=True)
+    num = sorted(num.items(), key=lambda x: x[1], reverse=True)
     if num[0][1] == 5:
         first_num = int(num[0][0])
         return 5
@@ -98,7 +97,7 @@ def check_num(num = {}):
             return 2
 
 
-for i in range(0,5):
+for i in range(0, 5):
     a, b = input().split(" ")
     card[a] = int(b)
     Color[a] += 1
@@ -110,10 +109,10 @@ color_result = check_color(Color)
 continuous_result = continuous_num(Num)
 num_result = check_num(number)
 
-card = sorted(card.items(), key=lambda x: x[1],reverse=True)
+card = sorted(card.items(), key=lambda x: x[1], reverse=True)
 
 
-if color_result == True and continuous_result == True:   #성공
+if color_result and continuous_result:   #성공
     point = card[0][1] + 900
 elif num_result == 4:          # 성공
     point = first_num + 800
