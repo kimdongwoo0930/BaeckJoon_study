@@ -49,92 +49,81 @@ point = 0
 
 
 def check_color(color={}):
-    color = sorted(color.items(), key=lambda x: x[1], reverse=True)
-    if color[0][1] == 5:
+    if 5 in color.values():
         return True
 
 
-def continuous_num(num=[]):
-    num.sort(reverse=False)
-    for i in range(0, 4):
-        if num[i] == num[i+1] - 1:
-            continue
-        else:
-            return False
-    return True
+def continuous_num(Num=[]):
+    if max(Num) - min(Num) == 4:
+        return True
 
 
 def check_num(num={}):
     global first_num
     global second_num
 
+    nums = num.copy()
     num = sorted(num.items(), key=lambda x: x[1], reverse=True)
-    if num[0][1] == 5:
-        first_num = int(num[0][0])
+    if 5 in nums.values():
+        first_num = num[0][0]
         return 5
-    elif num[0][1] == 4:
-        first_num = int(num[0][0])
+    elif 4 in nums.values():
+        first_num = num[0][0]
         return 4
-    elif num[0][1] == 3:
+    elif 3 in nums.values():
         if num[1][1] == 2:
-            first_num = int(num[0][0])
-            second_num = int(num[1][0])
+            first_num = num[0][0]
+            second_num = num[1][0]
             return 3.2
         else:
-            first_num = int(num[0][0])
+            first_num = num[0][0]
             return 3
-    elif num[0][1] == 2:
+    elif 2 in nums.values():
         if num[1][1] == 2:
-            if int(num[0][0]) > int(num[1][0]):
-                first_num = int(num[0][0])
-                second_num = int(num[1][0])
+            if num[0][0] > num[1][0]:
+                first_num = num[0][0]
+                second_num = num[1][0]
             else:
-                first_num = int(num[1][0])
-                second_num = int(num[0][0])
+                first_num = num[1][0]
+                second_num = num[0][0]
             return 2.2
         else:
-            first_num = int(num[0][0])
+            first_num = num[0][0]
             return 2
 
 
 for i in range(0, 5):
-    a, b = input().split(" ")
-    card[a] = int(b)
+    a, b = input().split()
     Color[a] += 1
     number[b] += 1
     Num.append(int(b))
 
 
-color_result = check_color(Color)
-continuous_result = continuous_num(Num)
 num_result = check_num(number)
+Num.sort(reverse=True)
 
-card = sorted(card.items(), key=lambda x: x[1], reverse=True)
 
-
-if color_result and continuous_result:   #성공
-    point = card[0][1] + 900
+if check_color(Color) and continuous_num(Num):   #성공
+    point = Num[0] + 900
 elif num_result == 4:          # 성공
-    point = first_num + 800
+    point = int(first_num) + 800
 elif num_result == 3.2:        # 성공
-    point = first_num * 10 + second_num + 700
-elif color_result:             # 큰수 구하기 성공
-    point = card[0][1] + 600
-elif continuous_result:        # 큰수 구하기 성공
-    point = card[0][1] + 500
+    point = int(first_num) * 10 + int(second_num) + 700
+elif check_color(Color):             # 큰수 구하기 성공
+    point = Num[0] + 600
+elif continuous_num(Num):        # 큰수 구하기 성공
+    point = Num[0] + 500
 elif num_result == 3:
-    point = first_num + 400  #성공
+    point = int(first_num) + 400  #성공
 elif num_result == 2.2:
-    point = first_num * 10 + second_num + 300  # 성공
+    point = int(first_num) * 10 + int(second_num) + 300  # 성공
 elif num_result == 2:
-    point = first_num + 200    #성공
+    point = int(first_num) + 200    #성공
 else:
-    point = card[0][1] + 100   #성공
+    point = Num[0] + 100   #성공
 
 print(point)
 
-
-    # 검색함수는 완성 이제 조건만 걸면된다.
 
 
 
