@@ -1,24 +1,33 @@
-N, M = map(int, input().split())
+import sys
+sys.setrecursionlimit(10000)
 
-Num = []
-List = []
-F = 0
-L = 0
+N, M = map(int, sys.stdin.readline().split())
 
-for _ in range(M):
-    Num.append(list(map(int, input().split())))
+Map = [[]*(N+1) for _ in range(N+1)]
+visit = [0]*(N+1)
+count = 0
 
-Num.sort(key=lambda x: x[0])
-for i in range(0, M):
-    L = len(List)
-    F = 0
-    for j in range(0, L):
-        if str(Num[i][0]) in List[j]:
-            if str(Num[i][1]) not in List[j]:
-                List[j] += str(Num[i][1])
-        else:
-            F += 1
-    if F == L:
-        List.append(str(Num[i][0]) + str(Num[i][1]))
 
-print(len(List))
+for _ in range(0, M):
+    x, y = map(int, sys.stdin.readline().split())
+    Map[x].append(y)
+    Map[y].append(x)
+
+
+def dfs(start):
+    visit[start] = 1
+    for i in Map[start]:
+        if visit[i] == 0:
+            dfs(i)
+
+
+for i in range(1, N+1):
+    if visit[i] == 0:
+        dfs(i)
+        count += 1
+
+print(count)
+
+# input 말고 import sys.stdin.readline()으로 입력받을것 input으로 하면 시간초과뜸.
+
+# sys.setrecursionlimit(10000) 파이썬은 자체 재귀함수를 돌리면 수가 제한이 있기때문에 직접 늘려줘야한다.
