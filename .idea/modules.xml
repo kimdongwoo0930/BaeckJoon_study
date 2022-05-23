@@ -2,11 +2,13 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Java/10026/10026.iml" filepath="$PROJECT_DIR$/Java/10026/10026.iml" />
       <module fileurl="file://$PROJECT_DIR$/Java/1012/1012.iml" filepath="$PROJECT_DIR$/Java/1012/1012.iml" />
       <module fileurl="file://$PROJECT_DIR$/Java/1110/1110.iml" filepath="$PROJECT_DIR$/Java/1110/1110.iml" />
       <module fileurl="file://$PROJECT_DIR$/Java/11724/11724.iml" filepath="$PROJECT_DIR$/Java/11724/11724.iml" />
       <module fileurl="file://$PROJECT_DIR$/Java/1652/1652.iml" filepath="$PROJECT_DIR$/Java/1652/1652.iml" />
       <module fileurl="file://$PROJECT_DIR$/Java/1747/1747.iml" filepath="$PROJECT_DIR$/Java/1747/1747.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Java/2583/2583.iml" filepath="$PROJECT_DIR$/Java/2583/2583.iml" />
       <module fileurl="file://$PROJECT_DIR$/Java/2606/2606.iml" filepath="$PROJECT_DIR$/Java/2606/2606.iml" />
       <module fileurl="file://$PROJECT_DIR$/Java/2621/2621.iml" filepath="$PROJECT_DIR$/Java/2621/2621.iml" />
       <module fileurl="file://$PROJECT_DIR$/Java/2667/2667.iml" filepath="$PROJECT_DIR$/Java/2667/2667.iml" />
